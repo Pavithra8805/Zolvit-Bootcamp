@@ -10,11 +10,12 @@ This contains a simple Node.js module that exports a greeting function.
 
 1. Open Node REPL:
 
-- ```bash
-- node
+```bash
+node
 
 2. Import and run the function:
 
+```js
 const sayHello = require('./hello');
 sayHello("Pavithra");
 

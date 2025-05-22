@@ -1,0 +1,14 @@
+📅 Developer Notes - Hands-on Task
+
+Today’s Goal:
+- ✅ Read from a file using fs.readFileSync
+- ✅ Write to a file using fs.writeFileSync
+- ✅ Print content to the console
+
+Learned Concepts:
+- Node.js has a powerful 'fs' module
+- Reading and writing files is super easy
+- Practicing with actual tasks helps build confidence 💪
+
+Motivation of the Day:
+"Start where you are. Use what you have. Do what you can." – Arthur Ashe

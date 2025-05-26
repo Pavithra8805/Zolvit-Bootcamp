@@ -1,0 +1,17 @@
+{
+  "name": "zolvit-bootcamp",
+  "version": "1.0.0",
+  "description": "This contains a simple Node.js module that exports a greeting function.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.4.1"
+  }
+}

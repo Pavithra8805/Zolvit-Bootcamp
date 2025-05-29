@@ -1,34 +1,43 @@
-const http = require('http');
+const express = require('express');
+const connectDB = require('./config/db');
+const User = require('./userModel');
 
-const PORT = 3000;
+const app = express();
+app.use(express.json());
 
-const server = http.createServer((req, res) => {
-    if (req.url === '/') {
-        // Send HTML response
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(`
-            <h1>Welcome to Zolvit Bootcamp!</h1>
-            <p>This server returns HTML on '/' and JSON on '/data'</p>
-        `);
-    }
-    else if (req.url === '/data') {
-        // Send JSON response
-        const data = {
-            bootcamp: "Zolvit Bootcamp",
-            day: 3,
-            task: "Build simple server returning HTML on '/' and JSON on '/data'",
-            completed: true
-        };
+// Connect to MongoDB
+connectDB();
 
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify(data));
-    }
-    else {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('404 Not Found');
+// Home route (HTML response)
+app.get('/', (req, res) => {
+    res.send(`
+    <h1>Welcome to Zolvit Bootcamp!</h1>
+    <p>This server returns HTML on '/' and JSON on '/data'</p>`);
+});
+
+// JSON route
+app.get('/data', (req, res) => {
+    const data = {
+        bootcamp: "Zolvit Bootcamp",
+        day: 3,
+        task: "Build simple server returning HTML on '/' and JSON on '/data'",
+        completed: true
+    };
+    res.json(data);
+});
+
+// POST /users route to add a user
+app.post('/users', async (req, res) => {
+    try {
+        const user = new User(req.body);
+        const result = await user.save();
+        res.status(201).json(result);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
     }
 });
 
-server.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`🚀 Express server running at http://localhost:${PORT}`);
 });
